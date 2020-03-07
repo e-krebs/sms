@@ -10,10 +10,10 @@ You may need to adapt it to your use case.
 
 - run `yarn` to install dependencies
 
-## xml -> json
+## xml → json
 
 > input: **sms.xml** (your file)
-- run: `.\xml2json.ps1`
+- run: `yarn xml2json`
 
 > output: **sms.json**
 
