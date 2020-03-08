@@ -14,8 +14,9 @@ export const getSMS: getMessage
     if (!source) return;
 
     return {
+      type: 'SMS',
       ...getDate(message),
-      msg: message.body,
+      message: message.body,
       source
     };
   }

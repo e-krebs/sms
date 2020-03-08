@@ -49,6 +49,7 @@ export const getMMS: getMessage
     if (!source) return;
 
     return {
+      type: 'MMS',
       ...getDate(message),
       ...getContent(msg),
       source
