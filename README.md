@@ -33,3 +33,33 @@ You may need to adapt it to your use case.
 - run `yarn clean-json`
 
 > ouput: **sms-clean.json**
+
+The output is an ordered array (from oldest to newest) of [`Message`](./typings/Message.ts)
+
+A message can be either a [`SMS`](./typings/SMS.ts) or a [`MMS`](./typings/MMS.ts):
+```ts
+[
+  {
+    type: 'SMS',
+    timestamp: number,
+    date: string, // cf. DATE_FORMAT and LOCALE above
+    hour: string, // cf. TIME_FORMAT and LOCALE above
+    source: string, // cf. USER_ME and USER_OTHER above
+    message: string
+  }, {
+    type: 'MMS',
+    timestamp: number,
+    date: string, // cf. DATE_FORMAT and LOCALE above
+    hour: string, // cf. TIME_FORMAT and LOCALE above
+    source: string, // cf. USER_ME and USER_OTHER above
+    message: {
+      // all those are optional, but at least one will have a value
+      text?: string,
+      gif?: string,
+      jpeg?: string,
+      png?: string,
+      audio?: string
+    },
+  }
+]
+```
