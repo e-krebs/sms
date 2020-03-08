@@ -1,6 +1,6 @@
-import { CustomDate, Source, MMSPart } from ".";
+import { CustomDate, Source, MMSContent } from ".";
 
 export interface MMS extends CustomDate {
   source: Source;
-  parts: MMSPart[];
+  message?: MMSContent;
 }
