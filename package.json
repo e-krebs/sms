@@ -4,7 +4,7 @@
   "author": "e-krebs",
   "license": "MIT",
   "dependencies": {
-    "date-fns": "^2.10.0",
+    "date-fns": "^2.11.0",
     "dotenv": "^8.2.0",
     "fs": "^0.0.1-security",
     "xml-js": "^1.6.11"
