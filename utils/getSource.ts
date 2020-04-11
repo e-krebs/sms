@@ -1,7 +1,7 @@
 import { Source } from "../typings";
 
-const me: string = process.env.USER_ME!;
-const other: string = process.env.USER_OTHER!;
+export const me: string = process.env.USER_ME!;
+export const other: string = process.env.USER_OTHER!;
 
 export const getSource = (msg: { [key in string]: any }, msgType: 'sms' | 'mms'): Source | undefined => {
 
