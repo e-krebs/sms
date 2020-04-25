@@ -4,7 +4,7 @@
   "author": "e-krebs",
   "license": "MIT",
   "dependencies": {
-    "date-fns": "^2.10.0",
+    "date-fns": "^2.12.0",
     "dotenv": "^8.2.0",
     "fs": "^0.0.1-security",
     "xml-js": "^1.6.11"
@@ -14,7 +14,7 @@
     "clean-json": "ts-node-dev ./cleanJson.ts"
   },
   "devDependencies": {
-    "@types/node": "^13.9.0",
+    "@types/node": "^13.13.2",
     "ts-node-dev": "^1.0.0-pre.44",
     "typescript": "^3.8.3"
   },
