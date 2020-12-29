@@ -15,10 +15,7 @@
   },
   "devDependencies": {
     "@types/node": "^13.13.2",
-    "ts-node-dev": "^1.0.0-pre.44",
+    "ts-node-dev": "^1.1.1",
     "typescript": "^3.8.3"
-  },
-  "resolutions": {
-    "ts-node-dev/**/minimist": "^1.2.2"
   }
 }
