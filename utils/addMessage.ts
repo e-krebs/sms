@@ -140,7 +140,6 @@ export const addMessage = (
   const allowedError = 0.1;
   if (heightError > allowedError && splitted.length > 1) {
     console.log(`   height error: ${heightError}, page: ${config.doc.bufferedPageRange().count}`);
-    console.log('>' + message + '<');
-    console.log('');
+    console.log('>' + message + '<\n');
   }
 }
