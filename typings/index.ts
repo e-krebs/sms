@@ -5,3 +5,5 @@ export { MMS } from './MMS';
 export { MMSContent } from './MMSContent';
 export { SMS } from './SMS';
 export { Source } from './Source';
+export { PdfConfig } from './PdfConfig';
+export { SMSConfig } from './SMSConfig';
