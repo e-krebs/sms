@@ -23,7 +23,7 @@ const config: PdfConfig = {
   nextY: page.margin
 };
 
-config.doc.pipe(fs.createWriteStream('sms.pdf'));
+config.doc.pipe(fs.createWriteStream('sms.pdf') as NodeJS.WritableStream);
 config.doc.font('fonts/NotoSans-ExtraLight.ttf');
 
 config.doc.fontSize(font.title);

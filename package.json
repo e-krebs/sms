@@ -4,23 +4,23 @@
   "author": "e-krebs",
   "license": "MIT",
   "dependencies": {
-    "asturur-noto-emoji": "^5.0.1",
-    "date-fns": "^2.12.0",
+    "asturur-noto-emoji": "^6.1.0",
+    "date-fns": "^2.16.1",
     "dotenv": "^8.2.0",
-    "emoji-regex": "^9.0.0",
+    "emoji-regex": "^9.2.0",
     "fs": "^0.0.1-security",
     "pdfkit": "^0.11.0",
     "xml-js": "^1.6.11"
   },
   "scripts": {
-    "xml2json": "ts-node-dev ./xml2json.ts",
+    "xml2json": "ts-node-dev --max-old-space-size=4096 ./xml2json.ts",
     "clean-json": "ts-node-dev ./cleanJson.ts",
     "write-pdf": "ts-node-dev ./writePdf.ts"
   },
   "devDependencies": {
-    "@types/node": "^13.13.2",
-    "@types/pdfkit": "^0.10.5",
+    "@types/node": "^14.14.22",
+    "@types/pdfkit": "^0.10.6",
     "ts-node-dev": "^1.1.1",
-    "typescript": "^3.8.3"
+    "typescript": "^4.1.3"
   }
 }
