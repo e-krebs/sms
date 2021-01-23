@@ -15,7 +15,6 @@ const computeMessagePosition = (
 
   // computing text position & size
   const emojiFix = nbEmojis(msgConfig.message.message) * space.small;
-  // TODO: better handle new line (width is wrong in some cases, cf. sms n°3)
   const width = Math.min(config.doc.widthOfString(msgConfig.message.message) + emojiFix, textWidth);
   const x = page.margin
     + (msgConfig.align === 'right' ? boxLeftMargin : 0)
@@ -101,7 +100,6 @@ export const addMessage = (
         let imageY = textY + space.one;
         // take into account 'new line'
         if (i < splitted.length && imageX + emojiWidth > x + width + textMargin.x) {
-          // TODO: console.log(`emoji overflow page ${config.doc.bufferedPageRange().count}: ${segment}`);
           imageX = x + textMargin.x;
           imageY += config.doc.currentLineHeight(true);
         }
