@@ -4,7 +4,9 @@ import { getDate } from "./getDate";
 
 const getContent = (msg: { [key in string]: any })
   : { message?: MMSContent } => {
-  const partsList: any[] = msg.parts.part.map((x: any) => x.attributes);
+  const partsList: any[] = Array.isArray(msg.parts.part)
+    ? msg.parts.part.map((x: any) => x.attributes)
+    : [msg.parts.part.attributes];
   let result: MMSContent | undefined;
 
   for (const part of partsList) {
