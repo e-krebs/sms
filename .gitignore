@@ -1,5 +1,8 @@
 /node_modules
 .env
+**/yarn-error.log
 **/sms.xml
 **/sms.json
 **/sms-clean.json
+**/errors.log
+**/sms.pdf

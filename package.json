@@ -14,7 +14,8 @@
   },
   "scripts": {
     "xml2json": "ts-node-dev ./xml2json.ts",
-    "clean-json": "ts-node-dev ./cleanJson.ts"
+    "clean-json": "ts-node-dev ./cleanJson.ts",
+    "write-pdf": "ts-node-dev ./writePdf.ts"
   },
   "devDependencies": {
     "@types/node": "^13.13.2",

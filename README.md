@@ -63,3 +63,30 @@ A message can be either a [`SMS`](./typings/SMS.ts) or a [`MMS`](./typings/MMS.t
   }
 ]
 ```
+
+## write pdf
+> input: **sms-clean.json**
+
+- the pdf configuration is in the `pdfConfig/` folder
+  - `colors.ts` defines the colors of the speach bubbles for you and your correspondant
+  - `generic.ts` contains some definition you shouldn't need to change (space & font sizes)
+  - `pdf.ts` contains various generic definitions, the most important one being the size of the page (A4 here)Z
+- run `yarn write-pdf`
+
+> ouput: **sms.pdf**
+
+The output is a pdf file
+- the first page is a title page
+- followed by an empty page
+- and then the messages
+
+Here are the rules to show some elements:
+| element | position | rule |
+|-|-|-|
+| date · hour | horizontally centered | when a message is from a day different than the previous one |
+| hour | far right (you) / far left (your correspondant) | when a message is from the same day than the previous one, but there's more than 2 min between them |
+
+## example result
+![example](example.png)
+
+
