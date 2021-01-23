@@ -6,7 +6,7 @@ import PDFDocument from 'pdfkit';
 import fs from 'fs';
 
 import { Message, PdfConfig, SMSConfig } from './typings';
-import { me, other, addMessage, computeNewDay, showHour, finishSms } from './utils';
+import { me, other, addMessage, computeNewDay, showHour, finishSms, shortenEmojis } from './utils';
 import { page, font, textWidth } from './pdfConfig';
 
 const messages: Message[] = JSON.parse(fs.readFileSync('sms-clean.json').toString());
@@ -42,7 +42,10 @@ for (const message of messages) {
       const msgConfig: SMSConfig = {
         message,
         align: message.source === me ? 'right' : 'left',
-        height: config.doc.heightOfString(message.message, { width: textWidth }),
+        height: config.doc.heightOfString(
+          shortenEmojis(message.message),
+          { width: textWidth }
+        ),
         showHour: false
       };
 

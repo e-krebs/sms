@@ -8,11 +8,11 @@ export const getEmoji = (char: string): string | null => {
 }
 
 export const hasEmoji = (s: string): boolean => {
-const regex = emojiRegex();
-return regex.test(s);
+  const regex = emojiRegex();
+  return regex.test(s);
 }
 
-export const splitEmoji = (input: string): string[] => {
+export const splitEmoji = (input: string, shortenEmojis: boolean = false): string[] => {
   const regex = emojiRegex();
   const output: string[] = [];
   let match: RegExpExecArray | null;
@@ -20,17 +20,28 @@ export const splitEmoji = (input: string): string[] => {
 
   while (match = regex.exec(input)) {
     if (index != match.index) {
+      // text before the emoji
       output.push(input.substring(index, match.index));
     }
     index = match.index + match[0].length;
-    output.push(input.substring(match.index, index));
+    // the emoji
+    if (shortenEmojis) {
+      output.push('i');
+    } else {
+      output.push(input.substring(match.index, index));
+    }
   }
 
   if (input.length > index) {
+    // text after the emoji
     output.push(input.substring(index));
   }
 
   return output;
+}
+
+export const shortenEmojis = (input: string): string => {
+  return splitEmoji(input, true).join();
 }
 
 export const nbEmojis = (s: string): number => {
