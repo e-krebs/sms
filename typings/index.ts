@@ -1,9 +1,7 @@
 export { CustomDate } from './CustomDate';
 export { getMessage } from './getMessage';
-export { Message } from './Message';
-export { MMS } from './MMS';
+export * from './Message';
 export { MMSContent } from './MMSContent';
-export { SMS } from './SMS';
 export { Source } from './Source';
 export { PdfConfig } from './PdfConfig';
-export { SMSConfig } from './SMSConfig';
+export * from './MessageConfig';
