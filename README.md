@@ -9,6 +9,7 @@ You may need to adapt it to your use case.
 ## preparation
 
 - run `yarn` to install dependencies
+- if you plan on importing MMS with images, you need to install GraphicsMagick or ImageMagick [as described on the node package page](https://www.npmjs.com/package/gm#getting-started).
 
 ## xml → json
 
