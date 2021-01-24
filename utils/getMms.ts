@@ -3,11 +3,11 @@ import { getSource } from "./getSource";
 import { getDate } from "./getDate";
 
 const getContent = (msg: { [key in string]: any })
-  : { message?: MMSContent } => {
+  : { message: MMSContent } => {
   const partsList: any[] = Array.isArray(msg.parts.part)
     ? msg.parts.part.map((x: any) => x.attributes)
     : [msg.parts.part.attributes];
-  let result: MMSContent | undefined;
+  let result: MMSContent = {};
 
   for (const part of partsList) {
     // content-type
