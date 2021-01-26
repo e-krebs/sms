@@ -6,7 +6,7 @@ import PDFDocument from 'pdfkit';
 import fs from 'fs';
 
 import { ImageInfo, Message, MMSConfig, PdfConfig, SMSConfig } from './typings';
-import { me, other, addMessage, computeNewDay, showHour, finishSms, computeHeight, computeMmsHeight, writeImage } from './utils';
+import { me, other, addMessage, computeNewDay, showHour, finishSms, computeHeight, computeMmsHeight, writeImage, getImageInfo } from './utils';
 import { page, font } from './pdfConfig';
 
 const main = async () => {
@@ -72,7 +72,8 @@ const main = async () => {
         } else if (message.message.png) {
           imageInfo = await writeImage(message.message.png, 'png');
         } else if (message.message.audio) {
-          console.log('\nTODO: MMS audio');
+          // TODO: get audio length ?
+          imageInfo = getImageInfo('audio.png');
         }
 
         const mmsConfig: MMSConfig = {

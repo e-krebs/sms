@@ -73,6 +73,14 @@ const resizeImage = (imageInfo: ImageInfo): Promise<ImageInfo | null> => {
   });
 }
 
+export const getImageInfo = (path: string): ImageInfo | null => {
+  const { width, height } = sizeOf(path);
+  if (width === undefined || height === undefined) {
+    return null;
+  }
+  return { path, width, height };
+}
+
 export const writeImage = async (
   base64: string,
   type: 'jpeg' | 'png' | 'gif'
