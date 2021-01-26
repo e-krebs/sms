@@ -31,6 +31,7 @@ You may need to adapt it to your use case.
   - DATE_FORMAT is used to format the date (using date-fns)
   - TIME_FORMAT is used to format the time (using date-fns)
   - LOCALE is also used to format the date & time  (using date-fns)
+  - COVER is used to set a cover or not
 - run `yarn clean-json`
 
 > ouput: **sms-clean.json**

@@ -9,6 +9,8 @@ import { ImageInfo, Message, MMSConfig, PdfConfig, SMSConfig } from './typings';
 import { me, other, addMessage, computeNewDay, showHour, finishSms, computeHeight, computeMmsHeight, writeImage, getImageInfo } from './utils';
 import { page, font } from './pdfConfig';
 
+const showCover: boolean = process.env.COVER === 'true';
+
 const main = async () => {
   const messages: Message[] = JSON.parse(fs.readFileSync('sms-clean.json').toString());
 
@@ -27,13 +29,15 @@ const main = async () => {
   config.doc.pipe(fs.createWriteStream('sms.pdf') as NodeJS.WritableStream);
   config.doc.font('fonts/NotoSans-ExtraLight.ttf');
 
-  // cover page
-  config.doc.fontSize(font.title);
-  config.doc.text(`${other} & ${me}`, { align: 'center' });
-  config.doc.addPage();
+  if (showCover) {
+    // cover page
+    config.doc.fontSize(font.title);
+    config.doc.text(`${other} & ${me}`, { align: 'center' });
+    config.doc.addPage();
 
-  // add an empty page
-  config.doc.addPage();
+    // add an empty page
+    config.doc.addPage();
+  }
 
   // reset
   config.doc.fontSize(font.regular);
@@ -102,7 +106,6 @@ const main = async () => {
 
   config.doc.end();
 
-  
   if (fs.existsSync('tmp')) {
     fs.rmSync('tmp', { recursive: true });
   }
