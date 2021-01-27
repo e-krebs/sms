@@ -47,7 +47,7 @@ export const getMMS: getMessage
 
     if (types.length <= 0) return;
 
-    let source: Source | undefined = getSource(msg, 'mms');
+    let source: Source | undefined = getSource(msg, 'mms', phone);
     if (!source) return;
 
     return {

@@ -10,7 +10,7 @@ export const getSMS: getMessage
 
     if (message.address.indexOf(phone) < 0) return;
 
-    const source: Source | undefined = getSource(message, 'sms');
+    const source: Source | undefined = getSource(message, 'sms', phone);
     if (!source) return;
 
     return {

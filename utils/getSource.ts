@@ -3,7 +3,11 @@ import { Source } from "../typings";
 export const me: string = process.env.USER_ME!;
 export const other: string = process.env.USER_OTHER!;
 
-export const getSource = (msg: { [key in string]: any }, msgType: 'sms' | 'mms'): Source | undefined => {
+export const getSource = (
+  msg: { [key in string]: any },
+  msgType: 'sms' | 'mms',
+  phone: string
+): Source | undefined => {
 
   let type: string | undefined;
   switch (msgType) {
@@ -12,7 +16,7 @@ export const getSource = (msg: { [key in string]: any }, msgType: 'sms' | 'mms')
       break;
     case 'mms':
       type = msg.addrs.addr.map((x: any) => x.attributes).filter(
-        (x: any) => x.address.indexOf('insert-address-token') < 0
+        (x: any) => x.address.indexOf(phone) >= 0
       )[0].type;
       break;
   }

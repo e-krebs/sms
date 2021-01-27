@@ -1,5 +1,5 @@
 - [x] MMS Audio (icon + duration ?)
-- [ ] MMS associated to the wrong person
+- [x] MMS associated to the wrong person
 - [x] image max height
 - [ ] MMS + SMS together
 
