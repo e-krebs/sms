@@ -41,7 +41,7 @@ export const splitEmoji = (input: string, shortenEmojis: boolean = false): strin
 }
 
 export const shortenEmojis = (input: string): string => {
-  return splitEmoji(input, true).join();
+  return splitEmoji(input, true).join('');
 }
 
 export const nbEmojis = (s: string): number => {
