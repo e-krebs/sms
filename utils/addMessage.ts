@@ -169,7 +169,9 @@ export const addMessage = (
   const heightError = startY + msgConfig.height - config.doc.y;
   const allowedError = 0.1;
   if (heightError > allowedError && splittedLength > 1) {
-    console.log(`   height error: ${heightError}, page: ${config.doc.bufferedPageRange().count}`);
-    console.log('>' + message + '<\n');
+    if (heightError < 670) { // otherwise it's just a page change
+      console.log(`   height error: ${heightError}, page: ${config.doc.bufferedPageRange().count}`);
+      console.log('>' + message + '<\n');
+    }
   }
 }
