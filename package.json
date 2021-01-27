@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "author": "e-krebs",
   "license": "MIT",
+  "engines": {
+    "node": ">= 15.6"
+  },
   "dependencies": {
     "asturur-noto-emoji": "^6.1.0",
     "date-fns": "^2.16.1",
