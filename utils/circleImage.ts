@@ -25,7 +25,7 @@ export const circleImage = async (inputImageInfo: ImageInfo): Promise<ImageInfo 
     width: size,
     height: size
   };
-  const halfSize = Math.round(size / 2);
+  const halfSize = Math.round(size / 2) - 1;
   fs.copyFileSync(inputImageInfo.path, imageInfo.path);
 
   await resizeImage(imageInfo);
