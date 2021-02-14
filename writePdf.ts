@@ -12,6 +12,11 @@ import { page, font } from './pdfConfig';
 const showCover: boolean = process.env.COVER === 'true';
 
 const main = async () => {
+  if (fs.existsSync('tmp')) {
+    fs.rmSync('tmp', { recursive: true });
+  }
+  fs.mkdirSync('tmp');
+
   const messages: Message[] = JSON.parse(fs.readFileSync('sms-clean.json').toString());
 
   const config: PdfConfig = {
@@ -41,11 +46,6 @@ const main = async () => {
 
   // reset
   config.doc.fontSize(font.regular);
-
-  if (fs.existsSync('tmp')) {
-    fs.rmSync('tmp', { recursive: true });
-  }
-  fs.mkdirSync('tmp');
 
   for (const message of messages) {
     switch (message.type) {
