@@ -5,5 +5,6 @@
 - [x] MMS + SMS together
 
 - [ ] page jump when changing page.margin
+- [ ] width of emojis with new font size
 - [ ] every X page → new file with new cover
 - [x] true cover page
