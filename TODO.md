@@ -2,7 +2,8 @@
 - [x] MMS associated to the wrong person
 - [x] image max height
 - [x] some height wrongly computed
-- [X] MMS + SMS together
+- [x] MMS + SMS together
 
+- [ ] page jump when changing page.margin
 - [ ] every X page → new file with new cover
-- [ ] true cover page
+- [x] true cover page
