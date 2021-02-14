@@ -6,7 +6,7 @@ import PDFDocument from 'pdfkit';
 import fs from 'fs';
 
 import { ImageInfo, Message, MMSConfig, PdfConfig, SMSConfig } from './typings';
-import { me, addMessage, computeNewDay, showHour, finishSms, computeHeight, computeMmsHeight, writeImage, getImageInfo, addCover } from './utils';
+import { me, addMessage, computeNewDay, showHour, finishSms, computeHeight, computeMmsHeight, writeImage, getImageInfo, addCover, finishPdf } from './utils';
 import { page, font } from './pdfConfig';
 
 const showCover: boolean = process.env.COVER === 'true';
@@ -103,14 +103,7 @@ const main = async () => {
     }
   }
 
-  console.log(config.doc.bufferedPageRange().count, 'pages written');
-  config.doc.end();
-
-  if (fs.existsSync('tmp')) {
-    fs.rmSync('tmp', { recursive: true });
-  }
-
-  fs.writeFileSync('errors.log', config.errors);
+  finishPdf(config);
 }
 
 main().then(() => {

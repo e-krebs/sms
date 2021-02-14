@@ -7,3 +7,4 @@ export { hasEmoji, nbEmojis, shortenEmojis } from './emojiHelpers';
 export * from './mmsHelper';
 export * from './circleImage';
 export * from './cover';
+export * from './pdfFile';
