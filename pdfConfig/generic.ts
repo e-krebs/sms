@@ -7,7 +7,7 @@ export const space = {
 }
 
 export const font = {
-  small: 8,
-  regular: 11,
+  small: 6,
+  regular: 8,
   title: 33
 };
