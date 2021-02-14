@@ -42,7 +42,7 @@ const getFirstFrame = (path: string, width: number, height: number): Promise<str
   });
 }
 
-const resizeImage = (imageInfo: ImageInfo): Promise<ImageInfo | null> => {
+export const resizeImage = (imageInfo: ImageInfo): Promise<ImageInfo | null> => {
   return new Promise((resolve) => {
     if (imageInfo.width <= textWidth && imageInfo.height <= textWidth) {
       resolve(imageInfo);
