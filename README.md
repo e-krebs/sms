@@ -32,6 +32,8 @@ You may need to adapt it to your use case.
   - TIME_FORMAT is used to format the time (using date-fns)
   - LOCALE is also used to format the date & time  (using date-fns)
   - COVER is used to set a cover or not
+    - if set to yes, you have to provide `me.png` & `other.png` at the root of the project (those image will be used to make the cover)
+  - VOLUME is used to format the title on the cover, below 👆 images (volume number is appened)
 - run `yarn clean-json`
 
 > ouput: **sms-clean.json**
