@@ -56,13 +56,13 @@ const main = async () => {
           showHour: false
         };
 
-        computeNewDay(msgConfig, config);
+        await computeNewDay(msgConfig, config);
 
         if (msgConfig.showHour) {
-          showHour(msgConfig, config)
+          await showHour(msgConfig, config)
         }
 
-        addMessage(msgConfig, config, null);
+        await addMessage(msgConfig, config, null);
 
         finishSms(msgConfig, config);
         break;
@@ -86,13 +86,13 @@ const main = async () => {
           showHour: false
         };
 
-        computeNewDay(mmsConfig, config);
+        await computeNewDay(mmsConfig, config);
 
         if (mmsConfig.showHour) {
-          showHour(mmsConfig, config)
+          await showHour(mmsConfig, config)
         }
 
-        addMessage(mmsConfig, config, imageInfo);
+        await addMessage(mmsConfig, config, imageInfo);
 
         finishSms(mmsConfig, config);
 

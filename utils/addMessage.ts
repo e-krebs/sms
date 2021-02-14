@@ -1,7 +1,7 @@
 import { splitEmoji, hasEmoji, getEmoji, nbEmojis } from './emojiHelpers';
 import { textMargin, textWidth, space, emojiWidth, page, boxLeftMargin, pageBottom, colorMe, colorOther } from '../pdfConfig';
 import { ImageInfo, Message, MessageConfig, PdfConfig } from '../typings';
-import { me } from '.';
+import { addPage, heightOfString, me } from '.';
 
 const getText = (msgConfig: MessageConfig<Message>): string | undefined => {
   return msgConfig.message.type === 'SMS'
@@ -9,15 +9,15 @@ const getText = (msgConfig: MessageConfig<Message>): string | undefined => {
   : msgConfig.message.message.text;
 }
 
-const computeMessagePosition = (
+const computeMessagePosition = async (
   msgConfig: MessageConfig<any>,
   config: PdfConfig,
   imageInfo: ImageInfo | null
-): {
+): Promise<{
   x: number;
   y: number;
   width: number;
-} => {
+}> => {
   const newPerson = !msgConfig.showHour && msgConfig.message.source !== config.currentSource;
 
   // computing text position & size
@@ -32,7 +32,7 @@ const computeMessagePosition = (
     + (msgConfig.align === 'right' ? (textWidth - width) : 0);
   let y = config.nextY + (newPerson ? space.small : space.tiny);
   if (y + msgConfig.height + textMargin.y * 2 > pageBottom) {
-    config.doc.addPage();
+    config = await addPage(config);
     y = page.margin;
   }
   return { x, y, width };
@@ -59,14 +59,14 @@ const splitNewline = (input: string[]): string[] => {
   return output;
 }
 
-export const addMessage = (
+export const addMessage = async (
   msgConfig: MessageConfig<Message>,
   config: PdfConfig,
   imageInfo: ImageInfo | null
 ) => {
   let color = msgConfig.message.source === me ? colorMe : colorOther;
 
-  const position = computeMessagePosition(msgConfig, config, imageInfo);
+  const position = await computeMessagePosition(msgConfig, config, imageInfo);
   let { x, y, width } = position;
 
   // showing box
@@ -106,7 +106,7 @@ export const addMessage = (
       i++;
       while (i > 1 && segment.charCodeAt(0) === 10) {
         // fixing new line at the beginning
-        textY += config.doc.heightOfString(' ');
+        textY += heightOfString(config.doc);
         textX = x + textMargin.x;
         segment = segment.substr(1);
       }
@@ -161,7 +161,7 @@ export const addMessage = (
       }
       if (segment.charCodeAt(segment.length - 1) === 10) {
         // fixing new line at the end
-        textY += config.doc.heightOfString(' ');
+        textY += heightOfString(config.doc);
         textX = x + textMargin.x;
       }
     }

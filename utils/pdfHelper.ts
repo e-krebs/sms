@@ -3,21 +3,25 @@ import PDFDocument from 'pdfkit';
 import { Message, MessageConfig, PdfConfig } from "../typings";
 import { font, defaultColor, space, page, textMargin, textWidth } from "../pdfConfig";
 import { shortenEmojis } from './emojiHelpers';
+import { addPage } from './addPage';
 
-export const dealWithPageOverflow = <T extends Message>(
+export const heightOfString = (doc: typeof PDFDocument, string: string = 'fl', options?: any): number => {
+  return Math.round(doc.heightOfString(string, options) * 10) / 10;
+}
+
+const dealWithPageOverflow = async <T extends Message>(
   msgConfig: MessageConfig<T>,
   config: PdfConfig
 ) => {
   // dealing with page overflow (including the message box)
   const hourHeight = config.doc.currentLineHeight(true);
   if (config.nextY + hourHeight + msgConfig.height + space.small + 2 * textMargin.y > page.height - page.margin) {
-    config.doc.addPage();
+    config = await addPage(config);
     config.nextY = page.margin;
   }
-
 }
 
-export const computeNewDay = <T extends Message>(
+export const computeNewDay = async <T extends Message>(
   msgConfig: MessageConfig<T>,
   config: PdfConfig
 ) => {
@@ -25,7 +29,7 @@ export const computeNewDay = <T extends Message>(
   if (msgConfig.message.date !== config.currentDate) {
     msgConfig.showHour = false;
     config.nextY += space.small;
-    dealWithPageOverflow(msgConfig, config);
+    await dealWithPageOverflow(msgConfig, config);
     config.doc
       .fontSize(font.small)
       .fillColor(defaultColor)
@@ -37,8 +41,8 @@ export const computeNewDay = <T extends Message>(
   }
 };
 
-export const showHour = <T extends Message>(msgConfig: MessageConfig<T>, config: PdfConfig) => {
-  dealWithPageOverflow(msgConfig, config);
+export const showHour = async <T extends Message>(msgConfig: MessageConfig<T>, config: PdfConfig) => {
+  await dealWithPageOverflow(msgConfig, config);
   config.doc
     .fontSize(font.small)
     .fillColor(defaultColor)
@@ -55,5 +59,5 @@ export const finishSms = <T extends Message>(msgConfig: MessageConfig<T>, config
 }
 
 export const computeHeight = (message: string, doc: typeof PDFDocument): number => {
-  return doc.heightOfString(shortenEmojis(message), { width: textWidth });
+  return heightOfString(doc, shortenEmojis(message), { width: textWidth });
 }
