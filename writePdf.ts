@@ -6,7 +6,7 @@ import PDFDocument from 'pdfkit';
 import fs from 'fs';
 
 import { ImageInfo, Message, MMSConfig, PdfConfig, SMSConfig } from './typings';
-import { me, other, addMessage, computeNewDay, showHour, finishSms, computeHeight, computeMmsHeight, writeImage, getImageInfo } from './utils';
+import { me, addMessage, computeNewDay, showHour, finishSms, computeHeight, computeMmsHeight, writeImage, getImageInfo, addCover } from './utils';
 import { page, font } from './pdfConfig';
 
 const showCover: boolean = process.env.COVER === 'true';
@@ -18,6 +18,7 @@ const main = async () => {
   fs.mkdirSync('tmp');
 
   const messages: Message[] = JSON.parse(fs.readFileSync('sms-clean.json').toString());
+  const volumeNb: number = 1;
 
   const config: PdfConfig = {
     doc: new PDFDocument({
@@ -36,9 +37,7 @@ const main = async () => {
 
   if (showCover) {
     // cover page
-    config.doc.fontSize(font.title);
-    config.doc.text(`${other} & ${me}`, { align: 'center' });
-    config.doc.addPage();
+    await addCover(volumeNb, config);
 
     // add an empty page
     config.doc.addPage();
@@ -104,6 +103,7 @@ const main = async () => {
     }
   }
 
+  console.log(config.doc.bufferedPageRange().count, 'pages written');
   config.doc.end();
 
   if (fs.existsSync('tmp')) {
