@@ -5,3 +5,4 @@ export { addMessage } from './addMessage';
 export * from './pdfHelper';
 export { hasEmoji, nbEmojis, shortenEmojis } from './emojiHelpers';
 export * from './mmsHelper';
+export * from './circleImage';
