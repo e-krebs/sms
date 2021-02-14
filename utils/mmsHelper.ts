@@ -28,7 +28,7 @@ export const computeMmsHeight = (message: MMSContent, imageInfo: ImageInfo | nul
 const getFirstFrame = (path: string, width: number, height: number): Promise<string | null> => {
   return new Promise((resolve) => {
     const newPath = `tmp/${imageNb.toString().padStart(3, '0')}.png`;
-    gm(path).selectFrame(0).resize(width!, height).write(
+    gm(path).selectFrame(0).resize(width, height).write(
       newPath,
       (err, stdout, sdterr, cmd) => {
         if (err) {
