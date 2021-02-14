@@ -1,9 +1,8 @@
 import fs from 'fs';
-import rawGm, { SubClass } from 'gm';
-import { ImageInfo } from '../typings';
-import { resizeImage } from './mmsHelper';
 
-const gm: SubClass = rawGm.subClass({ imageMagick: true });
+import { ImageInfo } from '../typings';
+import { gm } from './gm';
+import { resizeImage } from './mmsHelper';
 
 export const circleImage = async (inputImageInfo: ImageInfo): Promise<ImageInfo | null> => {
   const imageInfo: ImageInfo = {

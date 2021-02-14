@@ -2,13 +2,12 @@ import PDFDocument from 'pdfkit';
 import fs from 'fs';
 import path from 'path';
 import sizeOf from 'image-size';
-import rawGm, { SubClass } from 'gm';
 
 import { ImageInfo, MMSContent } from '../typings';
 import { computeHeight as computeSmsHeight } from './pdfHelper';
 import { space, textWidth } from '../pdfConfig';
+import { gm } from './gm';
 
-const gm: SubClass = rawGm.subClass({ imageMagick: true });
 let imageNb = -1;
 
 export const computeMmsHeight = (message: MMSContent, imageInfo: ImageInfo | null, doc: typeof PDFDocument): number => {
