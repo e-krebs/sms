@@ -32,7 +32,7 @@ const main = async () => {
     nextY: page.margin
   };
 
-  config.doc.pipe(fs.createWriteStream('sms.pdf') as NodeJS.WritableStream);
+  config.doc.pipe(fs.createWriteStream(`sms-${volumeNb}.pdf`) as NodeJS.WritableStream);
   config.doc.font('fonts/NotoSans-ExtraLight.ttf');
 
   if (showCover) {

@@ -5,7 +5,7 @@
 **/sms.json
 **/sms-clean.json
 **/errors.log
-**/sms.pdf
+**/sms*.pdf
 /tmp
 me.*
 other.*
