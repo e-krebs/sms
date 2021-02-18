@@ -36,7 +36,8 @@ const addPersonToCover = async (source: Source, config: PdfConfig): Promise<void
     message,
     align: message.source === me ? 'right' : 'left',
     height: computeMmsHeight(message.message, image, config.doc),
-    showHour: false
+    showHour: false,
+    showNewDay: false,
   };
 
   await addMessage(coverItemConfig, config, image);

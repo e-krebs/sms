@@ -21,24 +21,37 @@ const dealWithPageOverflow = async <T extends Message>(
   }
 }
 
-export const computeNewDay = async <T extends Message>(
+export const computeShowTime = <T extends Message>(
+  message: T,
+  config: PdfConfig
+): {
+    showHour: boolean;
+    showNewDay: boolean;
+} => {
+  // new day
+  if (message.date !== config.currentDate) {
+    return { showNewDay: true, showHour: false };
+  } else {
+    return {
+      showNewDay: false,
+      showHour: (message.timestamp - config.currentTime > 2 * 60 * 1000), // 2 minutes
+    }
+  }
+}
+
+export const showNewDay = async <T extends Message>(
   msgConfig: MessageConfig<T>,
   config: PdfConfig
 ) => {
   // new day
-  if (msgConfig.message.date !== config.currentDate) {
-    msgConfig.showHour = false;
-    config.nextY += space.small;
-    await dealWithPageOverflow(msgConfig, config);
-    config.doc
-      .fontSize(font.small)
-      .fillColor(defaultColor)
-      .text(`${msgConfig.message.date} · ${msgConfig.message.hour}`, page.margin, config.nextY, { align: 'center' })
-      .fontSize(font.regular);
-    config.nextY = config.doc.y + space.small;
-  } else {
-    msgConfig.showHour = (msgConfig.message.timestamp - config.currentTime > 2 * 60 * 1000); // 2 minutes
-  }
+  config.nextY += space.small;
+  await dealWithPageOverflow(msgConfig, config);
+  config.doc
+    .fontSize(font.small)
+    .fillColor(defaultColor)
+    .text(`${msgConfig.message.date} · ${msgConfig.message.hour}`, page.margin, config.nextY, { align: 'center' })
+    .fontSize(font.regular);
+  config.nextY = config.doc.y + space.small;
 };
 
 export const showHour = async <T extends Message>(msgConfig: MessageConfig<T>, config: PdfConfig) => {

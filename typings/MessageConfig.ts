@@ -4,6 +4,7 @@ export interface MessageConfig<T extends Message> {
   message: T;
   align: 'right' | 'left' | 'center';
   height: number;
+  showNewDay: boolean;
   showHour: boolean;
 }
 

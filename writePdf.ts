@@ -6,7 +6,7 @@ import PDFDocument from 'pdfkit';
 import fs from 'fs';
 
 import { ImageInfo, Message, MMSConfig, PdfConfig, SMSConfig } from './typings';
-import { me, addMessage, computeNewDay, showHour, finishSms, computeHeight, computeMmsHeight, writeImage, getImageInfo, addCover, finishPdf } from './utils';
+import { me, addMessage, showHour, finishSms, computeHeight, computeMmsHeight, writeImage, getImageInfo, addCover, finishPdf, computeShowTime, showNewDay } from './utils';
 import { page, font } from './pdfConfig';
 
 const showCover: boolean = process.env.COVER === 'true';
@@ -50,13 +50,17 @@ const main = async () => {
     switch (message.type) {
       case 'SMS':
         const msgConfig: SMSConfig = {
+          ...computeShowTime(message, config),
           message,
           align: message.source === me ? 'right' : 'left',
-          height: computeHeight(message.message, config.doc),
-          showHour: false
+          height: 0,
         };
+        // TODO: update computeHeight with newDay / newHour
+        msgConfig.height = computeHeight(message.message, config.doc);
 
-        await computeNewDay(msgConfig, config);
+        if (msgConfig.showNewDay) {
+          showNewDay(msgConfig, config);
+        }
 
         if (msgConfig.showHour) {
           await showHour(msgConfig, config)
@@ -80,13 +84,16 @@ const main = async () => {
         }
 
         const mmsConfig: MMSConfig = {
+          ...computeShowTime(message, config),
           message,
           align: message.source === me ? 'right' : 'left',
-          height: computeMmsHeight(message.message, imageInfo, config.doc),
-          showHour: false
+          height: 0,
         };
+        mmsConfig.height = computeMmsHeight(message.message, imageInfo, config.doc);
 
-        await computeNewDay(mmsConfig, config);
+        if (mmsConfig.showNewDay) {
+          showNewDay(mmsConfig, config);
+        }
 
         if (mmsConfig.showHour) {
           await showHour(mmsConfig, config)
