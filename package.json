@@ -31,7 +31,7 @@
   },
   "resolutions": {
     "minimist": ">= 1.2.6",
-    "ts-node-dev/**/glob-parent": ">= 5.1.2",
+    "ts-node-dev/**/glob-parent": ">= 6.0.1",
     "ts-node-dev/**/trim-newlines": ">= 3.0.1",
     "ts-node-dev/**/hosted-git-info": ">= 2.8.9",
     "ts-node-dev/**/path-parse": ">= 1.0.7"
