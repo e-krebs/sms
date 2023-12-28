@@ -14,7 +14,7 @@
     "fs": "^0.0.1-security",
     "gm": "^1.23.1",
     "image-size": "^0.9.3",
-    "pdfkit": "^0.11.0",
+    "pdfkit": "^0.14.0",
     "xml-js": "^1.6.11"
   },
   "scripts": {
@@ -25,7 +25,7 @@
   "devDependencies": {
     "@types/gm": "^1.18.9",
     "@types/node": "^14.14.22",
-    "@types/pdfkit": "^0.10.6",
+    "@types/pdfkit": "^0.13.3",
     "ts-node-dev": "^1.1.6",
     "typescript": "^4.1.3"
   },
